@@ -1,4 +1,4 @@
-from ports.http.api.v1 import app
+from ports.inbound.http.api.v1 import app
 
 if __name__ == "__main__":
     import uvicorn

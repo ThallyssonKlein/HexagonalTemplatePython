@@ -1,0 +1,22 @@
+version: '3'
+services:
+  db:
+    image: postgres:14
+    container_name: postgres_db_hex_python
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: hex_python
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5432:5432"
+
+  api:
+    build: ./service
+    container_name: hex_python
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+      - mongodb
